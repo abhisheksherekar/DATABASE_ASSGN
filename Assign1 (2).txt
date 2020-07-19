@@ -1,4 +1,6 @@
 Assignment –1
+002_Abhishek sherekar_KH
+
 Creating sample tables and inserting values.
 
 A) SALESPEOPLE
