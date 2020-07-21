@@ -15,7 +15,7 @@
 	SELECT *from parts 
 	WHERE weight NOT BETWEEN 10 and 15; 
   
-   5. Display all the Part names starting with the letter ‘S’.  
+   5. Display all the Part names starting with the letter ‘A’.  
 	SELECT  *FROM parts
 	WHERE pname LIKE 'A%';    
 
