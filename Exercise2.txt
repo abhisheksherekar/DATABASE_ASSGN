@@ -1,4 +1,4 @@
-SQL Exercise 2   
+
    1. Display the Supplier table in the descending order of CITY. 
 	Select city from supplier
 	 ORDER BY city DESC;
