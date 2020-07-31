@@ -1,0 +1,128 @@
+MySQL
+Exercise 1
+1. Write a program that computes the perimeter and the area of a rectangle. Define
+your own values for the length and width. (Assuming that L and W are the length
+and width of the rectangle, Perimeter = 2*(L+W) and Area = L*W.
+==>
+create table temp
+(
+fir int(4),
+sec char(15);
+);
+delimiter //
+create procedure rect()
+begin
+    declare length float;
+    declare width float;
+    declare perimeter float;
+    declare area float;    
+    set length = 20, width = 10;
+    set perimeter = 2 * (length + width);
+    set area = length * width;
+    insert into temp values(perimeter,'perimeter');
+    insert into temp values(area,'area');
+
+end;//
+delimiter ;
+use sql_pl;
+call rect();
+select * from temp;
+
+
+2. Write a program that declares an integer variable called num, assigns a value to it,
+and computes and inserts into the tempp table the value of the variable itself, its
+square, and its cube.
+==>
+create table tempp
+(
+num int,
+num_sqr int,
+num_cube int
+);
+desc tempp;
+
+
+delimiter //
+create procedure sqr_cube(num int)
+begin
+	declare cubex int;
+    declare sqrx int ;
+	set cubex = power(num,3);
+    set sqrx = power(num,2);
+    insert into tempp values(num,sqrx,cubex);
+end;//
+delimiter ;
+
+call sqr_cube(3);
+select * from tempp;
+
+3. Convert a temperature in Fahrenheit (F) to its equivalent in Celsius (C) and vice
+versa. The required formulae are:- C= (F-32)*5/9
+F= 9/5*C + 32
+==>
+create table q3
+(
+cel float(5,2),
+far float(5,2)
+);
+desc q3;
+
+
+
+delimiter //
+create procedure cel_far1(num float(5,2) , temp char(1))
+begin
+	declare celx float(5,2);
+    declare farx float(5,2);
+        if temp = 'c'
+        then set farx = (9/5)*num + 32;
+        insert into q3 values(num,farx);
+        end if;
+        if temp = 'f' 
+        then set celx = (num - 32) * 5/9;
+        insert into q3 values(celx,num);
+        end if;
+end;//
+delimiter ;
+
+call cel_far1(0,'f');
+
+
+4. Convert a number of inches into yards, feet, and inches. For example, 124 inches
+equals 3 yards, 1 foot, and 4 inches.
+==>
+create table q41
+(
+input int,
+yards int,
+foot int,
+inches int
+);
+
+delimiter //
+create procedure inch_conv(inch int)
+begin
+	declare yard int;
+	declare foot int;
+	declare inches int;
+    
+    set yard = inch / 36;
+    set foot = (inch % 36) / 12;
+    set inches = inch -( (foot * 12) + ( yard * 36 ) ) ;
+    insert into q41 values(inch,yard,foot,inches);
+end;//
+delimiter ;
+
+drop procedure inch_conv;
+call inch_conv(86);
+select * from q41;
+
+5. Write a program that enables a user to input an integer. The program should then
+state whether the integer is evenly divisible by 5.
+==>
+
+
+6. Your block should read in two real numbers and tell whether the product of the two
+numbers is equal to or greater than 100. 
+==>
+
